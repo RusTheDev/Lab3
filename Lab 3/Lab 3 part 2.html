@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Search</title>
+</head>
+
+<body>
+    <label for="search-input">Search Products:</label>
+    <input type="text" id="search-input" />
+    <ul id="car-list"></ul>
+    <script>
+        const products = [
+            "Nintendo Switch",
+            "Nintendo Wii U",
+            "Nintendo 3DS",
+            "Xbox Series X/S",
+            "Xbox One",
+            "Xbox 360",
+            "Playstaiion 5",
+            "Playstaiion 4",
+            "Playstation 3",
+            "Playstation Vita"
+        ];
+
+        const productList = document.getElementById("car-list");
+        for (let i = 0; i < products.length; i++) {
+            const listItem = document.createElement("li");
+            listItem.textContent = products[i];
+            productList.appendChild(listItem);
+        }
+
+        function searchProducts(query) {
+            return products.filter(product =>
+                product.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.trim();
+
+            const filteredProducts = searchProducts(query);
+
+            productList.innerHTML = "";
+            for (let i = 0; i < filteredProducts.length; i++) {
+                const listItem = document.createElement("li");
+                listItem.textContent = filteredProducts[i];
+                productList.appendChild(listItem);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
